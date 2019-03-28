@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+<Properties>
+<!-- pattern with MORE details -->
+<!-- <Property name="LOG_PATTERN">%date{ISO8601} %-5level [%t] %c{3}.%M(%F:%L)
+- %m%n</Property> -->
+<!-- Basic Pattern -->
+<Property name="LOG_PATTERN">%date{ISO8601} %-5level [%t] %c{4} - %m%n
+</Property>
+<!-- For file logs -->
+<Property name="LOG_FILENAME">${sys:user.home}/app/logs/app.log</Property>
+<Property name="LOG_FILEPATTERN">${sys:user.home}/app/logs/app-%d{MM-dd-yyyy}.log.gz
+</Property>
+</Properties>
+
+<Appenders>
+<Console name="console" target="SYSTEM_OUT">
+<PatternLayout pattern="${LOG_PATTERN}" />
+</Console>
+
+<RollingRandomAccessFile
+name="RollingRandomAccessFileOneByDayForTwentyDays"
+fileName="${LOG_FILENAME}" filePattern="${LOG_FILEPATTERN}"
+advertiseURI="file://${LOG_FILENAME}" advertise="true">
+<PatternLayout>
+<Pattern>${LOG_PATTERN}</Pattern>
+</PatternLayout>
+<CronTriggeringPolicy schedule="0 0 0 * * ?" />
+<DefaultRolloverStrategy max="20" />
+</RollingRandomAccessFile>
+</Appenders>
+<Loggers>
+<Logger name="fr.hoc.dap" level="debug" additivity="false">
+<AppenderRef ref="console" />
+<AppenderRef
+ref="RollingRandomAccessFileOneByDayForTwentyDays" />
+</Logger>
+<Root level="info">
+<AppenderRef ref="console" />
+<AppenderRef
+ref="RollingRandomAccessFileOneByDayForTwentyDays" />
+</Root>
+</Loggers>
+</Configuration>
