@@ -1,7 +1,7 @@
 /**
 *
  */
-package fr.hoc.dap.server;
+package fr.hoc.dap.config;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.api.services.calendar.model.Event;
 
+import fr.hoc.dap.service.CalendarService;
+import fr.hoc.dap.service.GmailService;
+
 /**
- * @author house
+ * @author house Mathieu et Antoine.
  *
  */
 @RestController
-public class EventController {
+public class Controller {
     /**
      * parametre la configuration du nom, du dossier de destination et des tokens.
      */
@@ -28,11 +31,11 @@ public class EventController {
     private CalendarService cldService;
 
     /**
-    *@param nb .
-    * @param userKey .
+    *@param nb d'event à afficher..
+    * @param userKey fait appel au nom de compte actif.
      * @return ce qui doit être afficher sur la page web ici le denrier event de l'utilisateur.
-     * @throws GeneralSecurityException .
-     * @throws IOException .
+     * @throws GeneralSecurityException class is a generic security exception class.
+     * @throws IOException If the credentials.json file cannot be found.
     */
     @RequestMapping("/event/next")
     public List<Event> nextEvent(@RequestParam(value = "nb", defaultValue = "1") final Integer nb,
@@ -42,11 +45,11 @@ public class EventController {
     }
 
     /**
-     *@param nb .
-     * @param userKey .
+     *@param nb d'event à afficher.
+     * @param userKey fait appel au nom de compte actif.
       * @return ce qui doit être afficher sur la page web ici le denrier event de l'utilisateur.
-      * @throws GeneralSecurityException .
-      * @throws IOException .
+      * @throws GeneralSecurityException class is a generic security exception class.
+      * @throws IOException If the credentials.json file cannot be found.
      */
     @RequestMapping("/event/nextString")
     public String nextEventString(@RequestParam(value = "nb", defaultValue = "1") final Integer nb,
@@ -56,14 +59,13 @@ public class EventController {
     }
 
     /**
-     * .
+     * constructor.
      */
     @Autowired
     private GmailService gmService;
 
     /**
-     *
-     * @param userKey .
+     * @param userKey fait appel au nom de compte actif.
      * @return ce qui doit être afficher sur la page web ici le nbr de message non lu de l'utilisateur.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.

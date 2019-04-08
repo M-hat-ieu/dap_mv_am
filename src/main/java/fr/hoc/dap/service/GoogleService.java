@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.service;
 
 import java.io.File;
 import java.io.FileReader;
@@ -23,48 +23,33 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.people.v1.PeopleServiceScopes;
 
+import fr.hoc.dap.config.Config;
+
 /**
  * LA classe Access sert aux autorisations d'accés pour notre application.
  */
 public class GoogleService {
     /**
-     *  .
+     * @Autowired Marks a constructor, field, setter method or config method as to be autowired by Spring's
+     * dependency injection facilities.
      */
     @Autowired
     private Config maConf;
 
-    /**
-     * Le nom affiché de l'application de la popin (popup mais à l'intérieur d'une appli) Google.
-     */
-    //protected static final String APPLICATION_NAME = "Data Access Project";
     /**
      *Implementation is thread-safe, and sub-classes must be thread-safe.
      */
     protected static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     /**
-     * Dossier dans lequel les autorisations accordées par l'utiliateur seront sauvegardées.
-     */
-    //private static final String TOKENS_DIRECTORY_PATH = "tokens";
-    /**
      * Global instance of the scopes required by this quickstart.
      * If modifying these scopes, delete your previously saved tokens/ folder.ssss
      */
     private static List<String> scopes;
-    /**
-     * emplacement du fichier d'authentification de l'application.
-     */
-    //private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
-    /**
-     * Le port local pour la reponse au consentement de l'utilisateur.
-     *
-     */
-    //private static final Integer PORT = 8888;
 
     /**
-     * .
-     * @throws IOException .
-     * @throws GeneralSecurityException .
+     * @throws IOException If the credentials.json file cannot be found.
+     * @throws GeneralSecurityException class is a generic security exception class.
      */
     public GoogleService() {
         scopes = new ArrayList<String>();
@@ -80,28 +65,20 @@ public class GoogleService {
     }
 
     /**
-     * @return the config
-     */
-    /**
      * Creates an authorized Credential object.
-     * @param userKey .
+     * @param userKey = le nom du compte.
      * @return An authorized Credential object.
      * @throws IOException If the credentials.json file cannot be found.
-     * @throws GeneralSecurityException .
+     * @throws GeneralSecurityException class is a generic security exception class.
      */
     protected Credential getCredentials(final String userKey) throws IOException, GeneralSecurityException {
 
         AuthorizationCodeFlow flow = getFlow();
 
-        //        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(PORT).build();
-        //        return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
         return flow.loadCredential(userKey);
     }
 
-    /**
-     *
-     * @param maCnf .
-     */
+    /** @param maCnf definie le setter de MaConf.*/
     public void setMaConf(final Config maCnf) {
         this.maConf = maCnf;
     }
@@ -114,10 +91,9 @@ public class GoogleService {
     }
 
     /**
-     *
-     * @return .
-     * @throws IOException .
-     * @throws GeneralSecurityException .
+     * @return la variable flow.
+     * @throws IOException If the credentials.json file cannot be found.
+     * @throws GeneralSecurityException class is a generic security exception class.
      */
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();

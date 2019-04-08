@@ -1,0 +1,29 @@
+<html>
+
+<head>
+<title>Salut de dap</title>
+<link rel="stylesheet" th:href="@{css/dap.css}" href="../static/css/dap.css">
+</head>
+
+
+
+<body>
+    <span>Salut !</span>
+    <span th:text="${maVar}">Gertrude</span>
+
+
+    <div>
+        <ul>
+
+            <li th:each="bete : ${bebetes}"><span th:text=${bete}></span></li>
+            <li>chien</li>
+            <li>autruche</li>
+            <li>crocodile</li>
+        </ul>
+    </div>
+
+
+
+
+</body>
+</html>

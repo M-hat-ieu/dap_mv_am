@@ -1,8 +1,7 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.service;
 
 /**
- * @author house
- *
+ * @author house Mathieu et Antoine.
  */
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -22,35 +21,14 @@ import com.google.api.services.gmail.model.Message;
  */
 @Service
 public final class GmailService extends GoogleService {
-    /**
-     * on instancie Gang of Four a la classe.
-     */
-    //    private static GmailService instance = null;
-
-    /**
-     * constructeur de la classe Gmail.
-     */
-    //    private GmailService() {
-    //
-    //    }
-    //
-    //    /**
-    //     * @return synchronisation des threads.
-    //     */
-    //    public static synchronized GmailService getInstance() {
-    //        if (instance == null) {
-    //            instance = new GmailService();
-    //        }
-    //        return instance;
-    //    }
 
     /**
      * Build a new authorized API client service.
      * service An accessor for creating requests from the Users collection.
-     * @param userKey .
+     * @param userKey = nom du compte actif.
      * @return variable de Gmail.
-     * @throws IOException .
-     * @throws GeneralSecurityException .
+     * @throws IOException If the credentials.json file cannot be found.
+     * @throws GeneralSecurityException class is a generic security exception class.
      */
     public Gmail getService(final String userKey) throws GeneralSecurityException, IOException {
         Gmail service = null;
@@ -62,7 +40,7 @@ public final class GmailService extends GoogleService {
     }
 
     /**
-     * @param userKey .
+     * @param userKey = nom du compte actif.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return le nombre de messages non lu de l'utilisateurs.
@@ -86,7 +64,7 @@ public final class GmailService extends GoogleService {
      * Supports the same query format as theGmail search box,
      * For example, "from:someuser@example.com rfc822msgid: is:unread",
      * Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param userKey .
+     * @param userKey fait appel au nom de compte actif.
      * @return An authorized.
      * @throws GeneralSecurityException class is a generic security exception class.
      */

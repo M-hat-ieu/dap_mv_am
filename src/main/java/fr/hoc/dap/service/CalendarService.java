@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -14,41 +14,16 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 /**
- * .
- * @author house
- *
+ * @author house Mathieu et Antoine.
  */
 /**
  * Cette classe regroupe le moyen d'extraire les infos des contacts (API people Google).
  */
 @Service
 public final class CalendarService extends GoogleService {
-    /**
-     * insatncie calendar service en singleton.
-     */
-    //    private static CalendarService instance = null;
 
     /**
-     * CalendarService ici représente le constructeur de sa propre classe.
-     */
-    //    private CalendarService() {
-    //
-    //    }
-    //
-    //    /**
-    //     * .
-    //     * @return .
-    //     */
-    //    public static synchronized CalendarService getInstance() {
-    //        if (instance == null) {
-    //            instance = new CalendarService();
-    //        }
-    //        return instance;
-    //
-    //    }
-
-    /**
-     * @param userKey .
+     * @param userKey fait appel au nom de compte actif.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return service.
@@ -63,8 +38,8 @@ public final class CalendarService extends GoogleService {
     }
 
     /**
-     * @param nb .
-     * @param userKey .
+     * @param nb = variable du nombre d'événement à affciher.
+     * @param userKey fait appel au nom de compte actif.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return le prochain event de l'utilisateur.
@@ -86,8 +61,8 @@ public final class CalendarService extends GoogleService {
 
     /**
      * Text representation of the NEXT event.
-     * @param userKey .
-     * @return  le prochain event de l'utilisateur.
+     * @param userKey fait appel au nom de compte actif.
+     * @return le prochain event de l'utilisateur.
      * @throws IOException IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException GeneralSecurityException class is a generic security exception class.
      */

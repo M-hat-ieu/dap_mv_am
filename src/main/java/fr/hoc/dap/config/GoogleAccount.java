@@ -1,4 +1,4 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.config;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -22,10 +22,10 @@ import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.http.GenericUrl;
 
+import fr.hoc.dap.service.GoogleService;
+
 /**
- *
- * @author house
- *
+ * @author house Mathieu et Antoine.
  */
 @Controller
 public class GoogleAccount extends GoogleService {
@@ -49,7 +49,7 @@ public class GoogleAccount extends GoogleService {
      * @param session the HTTP Session
      * @return the view to display
      * @throws ServletException When Google account could not be connected to DaP.
-     * @throws GeneralSecurityException .
+     * @throws GeneralSecurityException class is a generic security exception class.
      */
     @RequestMapping("/oAuth2Callback")
     public String oAuthCallback(@RequestParam final String code, final HttpServletRequest request,
@@ -74,7 +74,7 @@ public class GoogleAccount extends GoogleService {
                             + credential.getAccessToken().substring(SENSIBLE_DATA_FIRST_CHAR, SENSIBLE_DATA_LAST_CHAR));
                 }
             }
-            // onSuccess(request, resp, credential);
+
         } catch (IOException e) {
             LOG.error("Exception while trying to store user Credential", e);
             throw new ServletException("Error while trying to conenct Google Account");
@@ -85,9 +85,9 @@ public class GoogleAccount extends GoogleService {
 
     /**
      * retrieve the User ID in Session.
-     * @param session the HTTP Session
-     * @return the current User Id in Session
-     * @throws ServletException if no User Id in session
+     * @param session the HTTP Session.
+     * @return the current User Id in Session.
+     * @throws ServletException if no User Id in session.
      */
     private String getUserid(final HttpSession session) throws ServletException {
         String userId = null;
@@ -104,9 +104,9 @@ public class GoogleAccount extends GoogleService {
 
     /**
      * Extract OAuth2 Google code (from URL) and decode it.
-     * @param request the HTTP request to extract OAuth2 code
-     * @return the decoded code
-     * @throws ServletException if the code cannot be decoded
+     * @param request the HTTP request to extract OAuth2 code.
+     * @return the decoded code.
+     * @throws ServletException if the code cannot be decoded.
      */
     private String extracCode(final HttpServletRequest request) throws ServletException {
         final StringBuffer buf = request.getRequestURL();
@@ -131,10 +131,9 @@ public class GoogleAccount extends GoogleService {
 
     /**
      * Build a current host (and port) absolute URL.
-     * @param req         The current HTTP request to extract schema, host, port
-     *                    informations
-     * @param destination the "path" to the resource
-     * @return an absolute URI
+     * @param req The current HTTP request to extract schema, host, port informations.
+     * @param destination the "path" to the resource.
+     * @return an absolute URI.
      */
     protected String buildRedirectUri(final HttpServletRequest req, final String destination) {
         final GenericUrl url = new GenericUrl(req.getRequestURL().toString());
@@ -143,13 +142,12 @@ public class GoogleAccount extends GoogleService {
     }
 
     /**
-     * Add a Google account (user will be prompt to connect and accept required
-     * access).
-     * @param userId  the user to store Data
-     * @param request the HTTP request
-     * @param session the HTTP session
-     * @return the view to Display (on Error)
-     * @throws GeneralSecurityException .
+     * Add a Google account (user will be prompt to connect and accept required access).
+     * @param userId  the user to store Data.
+     * @param request the HTTP request.
+     * @param session the HTTP session.
+     * @return the view to Display (on Error).
+     * @throws GeneralSecurityException class is a generic security exception class.
      */
     @RequestMapping("/account/add/{userId}")
     public String addAccount(@PathVariable final String userId, final HttpServletRequest request,

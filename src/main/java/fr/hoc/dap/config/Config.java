@@ -1,8 +1,8 @@
-package fr.hoc.dap.server;
+package fr.hoc.dap.config;
 
 /**
  *
- * @author house
+ * @author house Mathieu et Antoine.
  *
  */
 public class Config {
@@ -42,14 +42,14 @@ public class Config {
     private String oAuth2CallbackUrl;
 
     /**
-     *  .
+     *  intialisation du constrcteur Config.
      */
     public Config() {
         init();
     }
 
     /**
-     *  .
+     *  variable init.
      */
     private void init() {
         applicationName = APPLICATION_NAME;
@@ -59,14 +59,14 @@ public class Config {
     }
 
     /**
-     * @return the applicationName
+     * @return the applicationName qui correspond au nom du projet, défini dans le programme.
      */
     public String getApplicationName() {
         return applicationName;
     }
 
     /**
-     * @param newApplicationName the applicationName to set
+     * @param newApplicationName the applicationName to set.
      */
     public void setApplicationName(final String newApplicationName) {
         this.applicationName = newApplicationName;

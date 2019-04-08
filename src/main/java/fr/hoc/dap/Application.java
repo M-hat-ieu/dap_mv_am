@@ -1,7 +1,4 @@
-/**
- *
- */
-package fr.hoc.dap.server;
+package fr.hoc.dap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,8 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import fr.hoc.dap.config.Config;
+
 /**
- * @author house
+ * @author house Mathieu et Antoine.
  *
  */
 @SpringBootApplication
@@ -32,8 +31,7 @@ public class Application {
     }
 
     /**
-     *
-     * @return configuration personnalisée
+     * @return configuration personnalisée.
      */
     @Bean
     public Config createConf() {
@@ -46,9 +44,9 @@ public class Application {
     }
 
     /**
-     * @param ctx I don't understand .
-     * @param userKey .
-     * @return les parametre du programme.
+     * @param ctx nom variable de contexte.
+     * @param userKey fait appel au nom de compte actif.
+     * @return les parametres du programme.
      */
     public CommandLineRunner commandLineRunner(final ApplicationContext ctx, final String userKey) {
         return args -> {
