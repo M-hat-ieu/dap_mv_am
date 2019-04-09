@@ -8,15 +8,15 @@ package fr.hoc.dap.config;
 public class Config {
 
     /**
-     * emplacement du dossier d'authentification de l'application. (CONSTANTE)
+     * emplacement du dossier d'authentification de l'application. CONSTANTE
      */
     protected static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "/dap/tokens";
     /**
-     * emplacement du fichier. (CONSTANTE)
+     * emplacement du fichier. CONSTANTE
      */
     protected static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "/dap/credentials_web.json";
     /**
-     * Le nom affiché de l'application de la popin (popup mais à l'intérieur d'une appli) Google. (CONSTANTE)
+     * Le nom affiché de l'application de la popin (popup mais à l'intérieur d'une appli) Google. CONSTANTE
      */
     protected static final String APPLICATION_NAME = "Data Access Project";
     /**
@@ -24,20 +24,20 @@ public class Config {
      */
     protected static final String AUTHCALLBACKURL = "/oAuth2Callback";
     /**
-     * (Variable).
+     * Variable applicationNAme.
      */
     private String applicationName;
     /**
-     * (Variable).
+     * Variable credentialsFilePath.
      */
     private String credentialsFilePath;
     /**
-     * (Variable).
+     * Variable tokensDirectoryPath.
      */
     private String tokensDirectoryPath;
 
     /**
-     * (Variable).
+     * Variable oAuth2CallbackUrl.
      */
     private String oAuth2CallbackUrl;
 

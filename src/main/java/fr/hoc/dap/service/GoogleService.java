@@ -8,6 +8,8 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
@@ -35,6 +37,9 @@ public class GoogleService {
      */
     @Autowired
     private Config maConf;
+
+    /**log.*/
+    private static final Logger LOG = LogManager.getLogger();
 
     /**
      *Implementation is thread-safe, and sub-classes must be thread-safe.
@@ -71,7 +76,7 @@ public class GoogleService {
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      */
-    protected Credential getCredentials(final String userKey) throws IOException, GeneralSecurityException {
+    protected Credential getCredentials(final String userKey) throws GeneralSecurityException, IOException {
 
         AuthorizationCodeFlow flow = getFlow();
 
@@ -96,9 +101,17 @@ public class GoogleService {
      * @throws GeneralSecurityException class is a generic security exception class.
      */
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
+
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         // Load client secrets.
         File file = new java.io.File(maConf.getCredentialsFilePath());
+
+        System.out.println(file);
+
+        if (!file.exists()) {
+            LOG.error("Credential file doesn't exist !");
+        }
+
         Reader targetReader = new FileReader(file);
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, targetReader);
 

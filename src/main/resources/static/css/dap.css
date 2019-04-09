@@ -1,0 +1,25 @@
+div {
+	barder : 2px solid red;
+	display : block;
+	
+}
+
+.salutation {
+	font-weight: bolder;
+}
+
+.user_name {
+	color: purple;
+}
+
+.bete {
+	 font-style: italic;
+}
+
+table {
+    border: 2px solid green;
+}
+
+table td {
+    border: 2px solid blue;
+}

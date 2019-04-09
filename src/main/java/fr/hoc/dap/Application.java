@@ -1,7 +1,5 @@
 package fr.hoc.dap;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,17 +15,10 @@ import fr.hoc.dap.config.Config;
 @SpringBootApplication
 public class Application {
     /**
-     * constante log pour de futur debugage.
-     */
-    private static final Logger LOG = LogManager.getLogger();
-
-    /**
-     * @param args .
+     * @param args argument pour spring .
      */
     public static void main(final String[] args) {
-
         SpringApplication.run(Application.class, args);
-
     }
 
     /**
@@ -51,7 +42,6 @@ public class Application {
     public CommandLineRunner commandLineRunner(final ApplicationContext ctx, final String userKey) {
         return args -> {
 
-            LOG.info("pensez aux générations futures le monde");
         };
     }
 }

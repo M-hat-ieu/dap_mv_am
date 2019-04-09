@@ -1,27 +1,35 @@
 <html>
 
 <head>
-<title>Salut de dap</title>
-<link rel="stylesheet" th:href="@{css/dap.css}" href="../static/css/dap.css">
+<title>Dap Admin</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/dap.css}" href="../static/css/dap.css">
 </head>
 
 
 
 <body>
-    <span>Salut !</span>
-    <span th:text="${maVar}">Gertrude</span>
+    <span class= "salutation" >Salut !</span>
+    <span class= "user_name" th:text="${uName}">Mathieu</span>
 
-
-    <div>
-        <ul>
-
-            <li th:each="bete : ${bebetes}"><span th:text=${bete}></span></li>
-            <li>chien</li>
-            <li>autruche</li>
-            <li>crocodile</li>
-        </ul>
-    </div>
-
+<ul class= "bete">
+	<li th:each="bete : ${betes}" th:text="${bete}">Un animal</li>
+	
+</ul>
+    
+<table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type d'animal</th>
+            <tr>
+        </thead>
+        <tbody>
+            <tr th:each="bete : ${betes}">
+                <td></td>
+                <td th:text="${bete}">Un Animal</td>
+            </tr>
+        </tbody>
+        </table>
 
 
 

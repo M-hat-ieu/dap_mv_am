@@ -152,6 +152,9 @@ public class GoogleAccount extends GoogleService {
     @RequestMapping("/account/add/{userId}")
     public String addAccount(@PathVariable final String userId, final HttpServletRequest request,
             final HttpSession session) throws GeneralSecurityException {
+
+        LOG.info("URL : account/add/" + userId + " call");
+
         String response = "errorOccurs";
         GoogleAuthorizationCodeFlow flow;
         Credential credential = null;
