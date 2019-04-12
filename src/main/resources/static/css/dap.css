@@ -1,7 +1,6 @@
 div {
 	barder : 2px solid red;
-	display : block;
-	
+	display : block;	
 }
 
 .salutation {
@@ -12,14 +11,25 @@ div {
 	color: purple;
 }
 
-.bete {
+.user {
 	 font-style: italic;
 }
 
-table {
-    border: 2px solid green;
+table td, th {
+    border: 2px solid yellow;
 }
 
-table td {
-    border: 2px solid blue;
+.head {
+	color: #00FFFF; 
+	text-align: center;	
+}
+
+tbody {
+	color: green;
+	vertical-align: center;
+	text-align: center;
+}
+
+th {
+	width: 25%;	
 }

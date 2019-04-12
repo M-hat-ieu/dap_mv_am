@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<title>Dap Admin</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/dap.css}" href="../static/css/dap.css">
+
+</head>
+
+
+
+<body>
+	</br>
+	    <span class= "salutation" >Bonjour, voici le tableau récapitulatif des données du crédential !</span>
+	    <span class= "user_name" th:text="${uName}">Mathieu</span>
+	</br>
+	</br>
+
+<div class="table-responsive-lg">
+	<table class="table table-dark tableau">
+	  <thead>+
+	    <tr class= "table-info head">
+	      <th scope="col">Name</th>
+	      <th scope="col">Token</th>
+	      <th scope="col">Refresh Token</th>
+	      <th scope="col">Expiration</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr class="table-success" th:each="users : ${allUsers}">
+	      <td th:text="${users.key}"></td>
+	      <td th:text="${users.value.accessToken}"></td>
+	      <td th:text="${users.value.refreshToken}"></td>
+	      <td th:text="${users.value.expirationTimeMilliseconds}"></td> 
+	    </tr> 
+	  </tbody>
+	</table>
+</div>
+
+
+
+</body>
+</html>
