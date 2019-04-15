@@ -10,15 +10,17 @@
 
 
 <body>
+	<!--  mv&am by Djer |Thymleaf| En (X)HTML cette balise s'écrit <br/> -->
 	</br>
 	    <span class= "salutation" >Bonjour, voici le tableau récapitulatif des données du crédential !</span>
+	    <!--  mv&am by Djer |Thymleaf| plus utile dan cette vue -->
 	    <span class= "user_name" th:text="${uName}">Mathieu</span>
 	</br>
 	</br>
 
 <div class="table-responsive-lg">
 	<table class="table table-dark tableau">
-	  <thead>+
+	  <thead>
 	    <tr class= "table-info head">
 	      <th scope="col">Name</th>
 	      <th scope="col">Token</th>
@@ -27,6 +29,7 @@
 	    </tr>
 	  </thead>
 	  <tbody>
+	  <!--  mv&am by Djer |Thymleaf| "user" serait plsuclaire de "user" car c'est bien UN utilisateur (différent à chaque passage dans la boucle) -->
 	    <tr class="table-success" th:each="users : ${allUsers}">
 	      <td th:text="${users.key}"></td>
 	      <td th:text="${users.value.accessToken}"></td>

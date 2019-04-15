@@ -7,6 +7,7 @@
 	<groupId>fr.hoc.dap</groupId>
 	<artifactId>server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>dap_server_mv_am</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -30,11 +31,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -49,6 +50,7 @@
 			<version>v1-rev98-1.23.0</version>
 		</dependency>
 
+		<!-- mv&am by Djer |Maven| cette dependance n'est plsu utile depuis qu'on gere nous meme le "/OAuth2CallBack" (passage en mode "web") -->
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>

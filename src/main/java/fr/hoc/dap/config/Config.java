@@ -7,12 +7,13 @@ package fr.hoc.dap.config;
  */
 public class Config {
 
+    //TODO mv&am by Djer |JavaDoc| Evite de préiciser "constante" dans la JavaDoc, on voit deja que c'est une cosntante (static final)
     /**
-     * emplacement du dossier d'authentification de l'application. CONSTANTE
+     * Emplacement du dossier d'authentification de l'application. CONSTANTE
      */
     protected static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "/dap/tokens";
     /**
-     * emplacement du fichier. CONSTANTE
+     * Emplacement du fichier. CONSTANTE
      */
     protected static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "/dap/credentials_web.json";
     /**
@@ -23,6 +24,8 @@ public class Config {
      * CONSTANTE gestion multi utilisateur, URL de réception des tokens.
      */
     protected static final String AUTHCALLBACKURL = "/oAuth2Callback";
+
+    //TODO mv&am by Djer |JavaDoc| Evite de préiciser "variable" dans la JavaDoc, on voit deja que c'est une variable
     /**
      * Variable applicationNAme.
      */
@@ -48,6 +51,7 @@ public class Config {
         init();
     }
 
+  //TODO mv&am by Djer |JavaDoc| "Fill with default values" serait mieux
     /**
      *  variable init.
      */

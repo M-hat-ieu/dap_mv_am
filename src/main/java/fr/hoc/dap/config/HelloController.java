@@ -41,6 +41,7 @@ public class HelloController extends GoogleService {
         List<String> betes = new ArrayList<String>();
 
         betes.add("autruche");
+        //TODO mv&am by Djer |Java| Voulais-tu écrire "chat" à la place de "chien" ?
         betes.add("très mechant chien");
 
         model.addAttribute("betes", betes);
@@ -49,8 +50,8 @@ public class HelloController extends GoogleService {
     }
 
     /**
-     * @param model est le nom du parametre ModelMap.
-     * @return "admin".
+     * @param model est le nom du parametre ModelMap. //TODO mv&am by Djer |JavaDoc| "Le model MVC" serait mieux
+     * @return "admin". //TODO mv&am by Djer |JavaDoc| "Nom de la vue admin à afifcher" serait mieux
      * @throws GeneralSecurityException If the credentials.json file cannot be found.
      * @throws IOException class is a generic security exception class.
      */

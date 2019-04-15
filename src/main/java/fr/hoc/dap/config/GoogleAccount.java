@@ -33,10 +33,12 @@ public class GoogleAccount extends GoogleService {
      * constante log pour de futur debugage.
      */
     private static final Logger LOG = LogManager.getLogger();
+    //TODO mv&am by Djer |JavaDoc| "Premier caractère à afficher sur les données senssibles" serait pas mal
     /**
      * ??.
      */
     private static final Integer SENSIBLE_DATA_FIRST_CHAR = 1;
+    //TODO mv&am by Djer |JavaDoc| "Dernier caractère à afficher sur les données senssibles" serait pas mal
     /**
      * ??.
      */
