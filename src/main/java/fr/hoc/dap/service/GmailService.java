@@ -30,6 +30,8 @@ public final class GmailService extends GoogleService {
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      */
+    //TODO mv&am by Djer |POO| "buildService" serait mieux
+    //TODO mv&am by Djer |POO| Devrait être privée
     public Gmail getService(final String userKey) throws GeneralSecurityException, IOException {
         Gmail service = null;
         NetHttpTransport httpTransport;

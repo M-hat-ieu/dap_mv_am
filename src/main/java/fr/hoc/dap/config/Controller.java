@@ -23,6 +23,7 @@ import fr.hoc.dap.service.GmailService;
  * @author house Mathieu et Antoine.
  *
  */
+//TODO mv&am by Djer |POO| Nom de classe un peu (trop) générique "DapController" ou "DapApiController" serait mieux
 @RestController
 public class Controller {
 
@@ -33,16 +34,18 @@ public class Controller {
     @Autowired
     private CalendarService cldService;
 
+    //TODO mv&am by Djer |JavaDoc| Il manque la première ligne de la JavaDoc (la "description")
     /**
-    *@param nb d'event à afficher..
-    * @param userKey fait appel au nom de compte actif.
-     * @return String.
+     * @param nb d'event à afficher..
+     * @param userKey fait appel au nom de compte actif. //TODO mv&am by Djer |JavaDoc| Pas d'apel ici, "nom du comte" est suffisant
+     * @return String. //TODO mv&am by Djer |JavaDoc| Ca n'est pas VRAI !!
      * @throws GeneralSecurityException class is a generic security exception class.
      * @throws IOException If the credentials.json file cannot be found.
-    */
+     */
     @RequestMapping("/event/next")
     public List<Event> nextEvent(@RequestParam(value = "nb", defaultValue = "1") final Integer nb,
             @RequestParam(value = "userKey") final String userKey) throws IOException, GeneralSecurityException {
+      //TODO mv&am by Djer |Log4J| Cette méthode pourrait ête appeler sans passer par cette URL (dans "Application.java" par exemple). Cette log risque de donner une FAUSSE information dans ce cas (certes assez spécial)
         LOG.info("URL : /event/next?userkey=" + userKey + " call");
         return cldService.calendar(nb, userKey);
     }
@@ -50,7 +53,7 @@ public class Controller {
     /**
      *@param nb d'event à afficher.
      * @param userKey fait appel au nom de compte actif.
-      * @return String.
+      * @return String. //TODO mv&am by Djer |JavaDoc| "Textual representation of next(s) event(s)" serait mieux
       * @throws GeneralSecurityException class is a generic security exception class.
       * @throws IOException If the credentials.json file cannot be found.
      */
@@ -61,13 +64,15 @@ public class Controller {
         return cldService.retrieveNextEvent(userKey);
     }
 
+    //TODO mv&am by Djer |Java| Les attributs se trouvent normalement au debut de la classe.
     /**
-     * constructor.
+     * constructor. //TODO mv&am by Djer |JavaDoc| NON ! c'est un attribut qui contient un service.
      */
     @Autowired
     private GmailService gmService;
 
     /**
+     * //TODO mv&am by Djer |JavaDoc| Il manque la "description"
      * @param userKey fait appel au nom de compte actif.
      * @return ce qui doit être afficher sur la page web ici le nbr de message non lu de l'utilisateur.
      * @throws IOException If the credentials.json file cannot be found.

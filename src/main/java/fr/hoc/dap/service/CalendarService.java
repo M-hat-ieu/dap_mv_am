@@ -16,6 +16,7 @@ import com.google.api.services.calendar.model.Events;
 /**
  * @author house Mathieu et Antoine.
  */
+//TODO mv&am by Djer |JavaDoc| Ce commentaire va dans le meme "bloc" que @Author (penses à mettre a jour la description)
 /**
  * Cette classe regroupe le moyen d'extraire les infos des contacts (API people Google).
  */
@@ -28,6 +29,8 @@ public final class CalendarService extends GoogleService {
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return service.
      */
+    //TODO mv&am by Djer |POO| "buildService" serait mieux
+    //TODO mv&am by Djer |POO| Devrait être privée
     public Calendar getService(final String userKey) throws GeneralSecurityException, IOException {
         Calendar service = null;
         NetHttpTransport httpTransport;
@@ -44,10 +47,12 @@ public final class CalendarService extends GoogleService {
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return le prochain event de l'utilisateur.
      */
+    //TODO mv&am by Djer |POO| Nom pas très claire "retrieveNextEvent" serait mieu
     public List<Event> calendar(final Integer nb, final String userKey) throws IOException, GeneralSecurityException {
 
         // Build a new authorized API client service.
 
+        //TODO mv&am by Djer |Java| Ce commentaire est devenu Faux
         // List the next 10 events from the primary calendar.event
         DateTime now = new DateTime(System.currentTimeMillis());
 

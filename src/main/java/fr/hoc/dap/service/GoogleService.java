@@ -52,6 +52,7 @@ public class GoogleService {
      */
     private static List<String> scopes;
 
+    //TODO mv&am by Djer |JavaDoc| La documentation n'est plus à jour
     /**
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
@@ -83,6 +84,7 @@ public class GoogleService {
         return flow.loadCredential(userKey);
     }
 
+    //TODO mv&am by Djer |POO| les getters/setters vont en général à la fin de la classe
     /** @param maCnf definie le setter de MaConf.*/
     public void setMaConf(final Config maCnf) {
         this.maConf = maCnf;
@@ -106,9 +108,11 @@ public class GoogleService {
         // Load client secrets.
         File file = new java.io.File(maConf.getCredentialsFilePath());
 
+        //TODO mv&am by Djer |POO| Pas de SysOut sur un serveur !
         System.out.println(file);
 
         if (!file.exists()) {
+            //TODO mv&am by Djer |Log4J| Contextualise le message " Credential file " + maConf.getCredentialsFilePath() + " doesn't exist !"
             LOG.error("Credential file doesn't exist !");
         }
 
