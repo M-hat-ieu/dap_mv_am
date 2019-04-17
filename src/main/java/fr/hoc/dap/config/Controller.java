@@ -34,7 +34,9 @@ public class Controller {
     @Autowired
     private CalendarService cldService;
 
-    //TODO mv&am by Djer |JavaDoc| Il manque la première ligne de la JavaDoc (la "description")
+    /**
+     * TODO mv&am by Djer |JavaDoc| Il manque la première ligne de la JavaDoc (la "description")
+     */
     /**
      * @param nb d'event à afficher..
      * @param userKey fait appel au nom de compte actif. //TODO mv&am by Djer |JavaDoc| Pas d'apel ici, "nom du comte" est suffisant
@@ -45,7 +47,7 @@ public class Controller {
     @RequestMapping("/event/next")
     public List<Event> nextEvent(@RequestParam(value = "nb", defaultValue = "1") final Integer nb,
             @RequestParam(value = "userKey") final String userKey) throws IOException, GeneralSecurityException {
-      //TODO mv&am by Djer |Log4J| Cette méthode pourrait ête appeler sans passer par cette URL (dans "Application.java" par exemple). Cette log risque de donner une FAUSSE information dans ce cas (certes assez spécial)
+        //TODO mv&am by Djer |Log4J| Cette méthode pourrait ête appeler sans passer par cette URL (dans "Application.java" par exemple). Cette log risque de donner une FAUSSE information dans ce cas (certes assez spécial)
         LOG.info("URL : /event/next?userkey=" + userKey + " call");
         return cldService.calendar(nb, userKey);
     }
