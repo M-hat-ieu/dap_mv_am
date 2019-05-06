@@ -1,8 +1,5 @@
 package fr.hoc.dap.service;
 
-/**
- * @author house Mathieu et Antoine.
- */
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ import com.google.api.services.gmail.model.Message;
 
 /**
  * Cette classe regroupe plussieurs éléments de l'API GMAIL.
+ * @author house Mathieu et Antoine.
  */
 @Service
 public final class GmailService extends GoogleService {
@@ -30,9 +28,8 @@ public final class GmailService extends GoogleService {
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      */
-    //TODO mv&am by Djer |POO| "buildService" serait mieux
-    //TODO mv&am by Djer |POO| Devrait être privée
-    public Gmail getService(final String userKey) throws GeneralSecurityException, IOException {
+
+    private Gmail buildService(final String userKey) throws GeneralSecurityException, IOException {
         Gmail service = null;
         NetHttpTransport httpTransport;
         httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -42,6 +39,7 @@ public final class GmailService extends GoogleService {
     }
 
     /**
+     * Print the labels in the user's account.
      * @param userKey = nom du compte actif.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
@@ -50,7 +48,6 @@ public final class GmailService extends GoogleService {
     public Integer mail(final String userKey) throws IOException, GeneralSecurityException {
 
         String userId = "me";
-        //        // Print the labels in the user's account.
         String query = "is:unread in:inbox";
 
         List<Message> messageNonLu = listMessagesMatchingQuery(userId, query, userKey);
@@ -59,27 +56,27 @@ public final class GmailService extends GoogleService {
     }
 
     /**
+     * Supports the same query format as theGmail search box,
+     * For example, "from:someuser@example.com rfc822msgid: is:unread",
+     * Parameter cannot be used when accessing the api using the gmail.metadata scope.
      * @throws IOException If the credentials.json file cannot be found.
      * @param userId  The user's email address. The special value me can be used to indicate the authenticated user.
      * [default: me].
      * @param query Only return messages matching the specified query,
-     * Supports the same query format as theGmail search box,
-     * For example, "from:someuser@example.com rfc822msgid: is:unread",
-     * Parameter cannot be used when accessing the api using the gmail.metadata scope.
      * @param userKey fait appel au nom de compte actif.
      * @return An authorized.
      * @throws GeneralSecurityException class is a generic security exception class.
      */
     public List<Message> listMessagesMatchingQuery(final String userId, final String query, final String userKey)
             throws IOException, GeneralSecurityException {
-        ListMessagesResponse response = getService(userKey).users().messages().list(userId).setQ(query).execute();
+        ListMessagesResponse response = buildService(userKey).users().messages().list(userId).setQ(query).execute();
 
         List<Message> messages = new ArrayList<Message>();
         while (response.getMessages() != null) {
             messages.addAll(response.getMessages());
             if (response.getNextPageToken() != null) {
                 String pageToken = response.getNextPageToken();
-                response = getService(userKey).users().messages().list(userId).setQ(query).setPageToken(pageToken)
+                response = buildService(userKey).users().messages().list(userId).setQ(query).setPageToken(pageToken)
                         .execute();
             } else {
                 break;

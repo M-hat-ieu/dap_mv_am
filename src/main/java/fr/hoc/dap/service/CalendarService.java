@@ -14,24 +14,20 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 /**
+ * Cette classe regroupe le moyen d'extraire les infos du calendrier (API calendar Google).
  * @author house Mathieu et Antoine.
- */
-//TODO mv&am by Djer |JavaDoc| Ce commentaire va dans le meme "bloc" que @Author (penses à mettre a jour la description)
-/**
- * Cette classe regroupe le moyen d'extraire les infos des contacts (API people Google).
  */
 @Service
 public final class CalendarService extends GoogleService {
 
     /**
-     * @param userKey fait appel au nom de compte actif.
+     * Build a new authorized API client service.
+     * @param userKey "nom du comte".
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return service.
      */
-    //TODO mv&am by Djer |POO| "buildService" serait mieux
-    //TODO mv&am by Djer |POO| Devrait être privée
-    public Calendar getService(final String userKey) throws GeneralSecurityException, IOException {
+    private Calendar buildService(final String userKey) throws GeneralSecurityException, IOException {
         Calendar service = null;
         NetHttpTransport httpTransport;
         httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -41,22 +37,18 @@ public final class CalendarService extends GoogleService {
     }
 
     /**
+     * "List build the Next Event".
      * @param nb = variable du nombre d'événement à affciher.
-     * @param userKey fait appel au nom de compte actif.
+     * @param userKey "nom du comte".
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      * @return le prochain event de l'utilisateur.
      */
-    //TODO mv&am by Djer |POO| Nom pas très claire "retrieveNextEvent" serait mieu
-    public List<Event> calendar(final Integer nb, final String userKey) throws IOException, GeneralSecurityException {
+    public List<Event> configItemNextEvent(final Integer nb, final String userKey)
+            throws IOException, GeneralSecurityException {
 
-        // Build a new authorized API client service.
-
-        //TODO mv&am by Djer |Java| Ce commentaire est devenu Faux
-        // List the next 10 events from the primary calendar.event
         DateTime now = new DateTime(System.currentTimeMillis());
-
-        Events events = getService(userKey).events().list("primary").setMaxResults(nb).setTimeMin(now)
+        Events events = buildService(userKey).events().list("primary").setMaxResults(nb).setTimeMin(now)
                 .setOrderBy("startTime").setSingleEvents(true).execute();
 
         List<Event> items = events.getItems();
@@ -65,7 +57,7 @@ public final class CalendarService extends GoogleService {
     }
 
     /**
-     * Text representation of the NEXT event.
+     * "Text representation of the Next Event".
      * @param userKey fait appel au nom de compte actif.
      * @return le prochain event de l'utilisateur.
      * @throws IOException IOException If the credentials.json file cannot be found.
@@ -74,7 +66,7 @@ public final class CalendarService extends GoogleService {
     public String retrieveNextEvent(final String userKey) throws IOException, GeneralSecurityException {
 
         String resultat = null;
-        List<Event> items = calendar(1, userKey);
+        List<Event> items = configItemNextEvent(1, userKey);
 
         if (items.isEmpty()) {
             System.out.println("No upcoming events found.");

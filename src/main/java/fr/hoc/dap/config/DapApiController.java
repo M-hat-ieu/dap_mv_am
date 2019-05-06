@@ -1,6 +1,3 @@
-/**
-*
- */
 package fr.hoc.dap.config;
 
 import java.io.IOException;
@@ -20,62 +17,59 @@ import fr.hoc.dap.service.CalendarService;
 import fr.hoc.dap.service.GmailService;
 
 /**
+ * Classe controller afin de recevoir des demandes des utilisateurs
+ * (ici des requêtes URLs) et proposer une réponse (en collectant les données via des Services,
+ * et en collectant les données dans un Model).
  * @author house Mathieu et Antoine.
- *
  */
-//TODO mv&am by Djer |POO| Nom de classe un peu (trop) générique "DapController" ou "DapApiController" serait mieux
-@RestController
-public class Controller {
 
-    /**log.*/
+@RestController
+public class DapApiController {
+
+    /** log.*/
     private static final Logger LOG = LogManager.getLogger();
 
-    /**Calendar svc. */
+    /** Calendar svc. */
     @Autowired
     private CalendarService cldService;
 
+    /** Gmail svc. */
+    @Autowired
+    private GmailService gmService;
+
     /**
-     * TODO mv&am by Djer |JavaDoc| Il manque la première ligne de la JavaDoc (la "description")
-     */
-    /**
-     * @param nb d'event à afficher..
-     * @param userKey fait appel au nom de compte actif. //TODO mv&am by Djer |JavaDoc| Pas d'apel ici, "nom du comte" est suffisant
-     * @return String. //TODO mv&am by Djer |JavaDoc| Ca n'est pas VRAI !!
+     * configure publish the next event for the user.
+     * @param nb d'event à afficher.
+     * @param userKey "nom du comte".
+     * @return "List representation of next(s) event(s) (form most explain)".
      * @throws GeneralSecurityException class is a generic security exception class.
      * @throws IOException If the credentials.json file cannot be found.
      */
     @RequestMapping("/event/next")
     public List<Event> nextEvent(@RequestParam(value = "nb", defaultValue = "1") final Integer nb,
             @RequestParam(value = "userKey") final String userKey) throws IOException, GeneralSecurityException {
-        //TODO mv&am by Djer |Log4J| Cette méthode pourrait ête appeler sans passer par cette URL (dans "Application.java" par exemple). Cette log risque de donner une FAUSSE information dans ce cas (certes assez spécial)
-        LOG.info("URL : /event/next?userkey=" + userKey + " call");
-        return cldService.calendar(nb, userKey);
+        LOG.info("searching for Next Event for users most explain" + userKey);
+        return cldService.configItemNextEvent(nb, userKey);
     }
 
     /**
-     *@param nb d'event à afficher.
-     * @param userKey fait appel au nom de compte actif.
-      * @return String. //TODO mv&am by Djer |JavaDoc| "Textual representation of next(s) event(s)" serait mieux
+      * configure publish the next event for the user.
+      * @param nb d'event à afficher.
+      * @param userKey "nom du comte".
+      * @return "Textual representation of next(s) event(s)".
       * @throws GeneralSecurityException class is a generic security exception class.
       * @throws IOException If the credentials.json file cannot be found.
      */
     @RequestMapping("/event/nextString")
     public String nextEventString(@RequestParam(value = "nb", defaultValue = "1") final Integer nb,
             @RequestParam(value = "userKey") final String userKey) throws IOException, GeneralSecurityException {
-        LOG.info("URL : /event/nextString?userkey=" + userKey + " call");
+        LOG.info("searching for Next Event for users " + userKey);
         return cldService.retrieveNextEvent(userKey);
     }
 
-    //TODO mv&am by Djer |Java| Les attributs se trouvent normalement au debut de la classe.
     /**
-     * constructor. //TODO mv&am by Djer |JavaDoc| NON ! c'est un attribut qui contient un service.
-     */
-    @Autowired
-    private GmailService gmService;
-
-    /**
-     * //TODO mv&am by Djer |JavaDoc| Il manque la "description"
-     * @param userKey fait appel au nom de compte actif.
+     * configure publish the email nb unread for the user.
+     * @param userKey "nom du comte".
      * @return ce qui doit être afficher sur la page web ici le nbr de message non lu de l'utilisateur.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
@@ -83,8 +77,7 @@ public class Controller {
     @RequestMapping("/email/nbunread")
     public Integer unreadEmail(@RequestParam(value = "userKey") final String userKey)
             throws IOException, GeneralSecurityException {
-        LOG.info("URL : /email/nbunread?userkey=" + userKey + " call");
+        LOG.info("searching for unread emails for users " + userKey);
         return gmService.mail(userKey);
-
     }
 }

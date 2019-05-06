@@ -34,6 +34,16 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
@@ -50,7 +60,8 @@
 			<version>v1-rev98-1.23.0</version>
 		</dependency>
 
-		<!-- mv&am by Djer |Maven| cette dependance n'est plsu utile depuis qu'on gere nous meme le "/OAuth2CallBack" (passage en mode "web") -->
+		<!-- mv&am by Djer |Maven| cette dependance n'est plsu utile depuis qu'on 
+			gere nous meme le "/OAuth2CallBack" (passage en mode "web") -->
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>

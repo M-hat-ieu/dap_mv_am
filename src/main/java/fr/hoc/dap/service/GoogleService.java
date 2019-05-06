@@ -28,7 +28,8 @@ import com.google.api.services.people.v1.PeopleServiceScopes;
 import fr.hoc.dap.config.Config;
 
 /**
- * LA classe Access sert aux autorisations d'accés pour notre application.
+ * La classe Access sert aux autorisations d'accés pour notre application.
+ * @author house Mathieu et Antoine.
  */
 public class GoogleService {
     /**
@@ -41,22 +42,16 @@ public class GoogleService {
     /**log.*/
     private static final Logger LOG = LogManager.getLogger();
 
-    /**
-     *Implementation is thread-safe, and sub-classes must be thread-safe.
-     */
+    /** Implementation is thread-safe, and sub-classes must be thread-safe. */
     protected static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     /**
      * Global instance of the scopes required by this quickstart.
-     * If modifying these scopes, delete your previously saved tokens/ folder.ssss
+     * If modifying these scopes, delete your previously saved tokens/ folder.
      */
     private static List<String> scopes;
 
-    //TODO mv&am by Djer |JavaDoc| La documentation n'est plus à jour
-    /**
-     * @throws IOException If the credentials.json file cannot be found.
-     * @throws GeneralSecurityException class is a generic security exception class.
-     */
+    /** scopes View and manage your data across Google Cloud Platform services. */
     public GoogleService() {
         scopes = new ArrayList<String>();
         scopes.add(GmailScopes.GMAIL_READONLY);
@@ -84,47 +79,43 @@ public class GoogleService {
         return flow.loadCredential(userKey);
     }
 
-    //TODO mv&am by Djer |POO| les getters/setters vont en général à la fin de la classe
-    /** @param maCnf definie le setter de MaConf.*/
-    public void setMaConf(final Config maCnf) {
-        this.maConf = maCnf;
-    }
-
     /**
-     * @return the maConf
-     */
-    protected Config getMaConf() {
-        return maConf;
-    }
-
-    /**
-     * @return la variable flow.
+     * Build flow and trigger user authorization request.
+     * @return variable flow, Load client secrets.
      * @throws IOException If the credentials.json file cannot be found.
      * @throws GeneralSecurityException class is a generic security exception class.
      */
     public GoogleAuthorizationCodeFlow getFlow() throws GeneralSecurityException, IOException {
 
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-        // Load client secrets.
+
         File file = new java.io.File(maConf.getCredentialsFilePath());
 
-        //TODO mv&am by Djer |POO| Pas de SysOut sur un serveur !
-        System.out.println(file);
+        LOG.info("le client secret chargé" + file);
 
         if (!file.exists()) {
-            //TODO mv&am by Djer |Log4J| Contextualise le message " Credential file " + maConf.getCredentialsFilePath() + " doesn't exist !"
-            LOG.error("Credential file doesn't exist !");
+
+            LOG.error(" Credential file " + maConf.getCredentialsFilePath() + " doesn't exist !");
         }
 
         Reader targetReader = new FileReader(file);
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, targetReader);
 
-        // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
                 clientSecrets, scopes)
                         .setDataStoreFactory(
                                 new FileDataStoreFactory(new java.io.File(maConf.getTokensDirectoryPath())))
                         .setAccessType("offline").build();
         return flow;
+    }
+
+    /** @param maCnf definie le setter de MaConf.*/
+    public void setMaConf(final Config maCnf) {
+        this.maConf = maCnf;
+    }
+
+    /** @return the maConf. */
+    protected Config getMaConf() {
+        return maConf;
     }
 }

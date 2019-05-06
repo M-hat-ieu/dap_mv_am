@@ -2,9 +2,7 @@ package fr.hoc.dap.config;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,43 +18,26 @@ import com.google.api.client.util.store.DataStore;
 import fr.hoc.dap.service.GoogleService;
 
 /**
-* @author house
+* Classe controller afin de recevoir des demandes des utilisateurs
+ * et proposer une réponse (en collectant les données via des Services,
+ * et en collectant les données dans un Model).
+ * @author house Mathieu et Antoine.
 */
 @Controller
-public class HelloController extends GoogleService {
+public class AdminController extends GoogleService {
 
     /** log. */
     private static final Logger LOG = LogManager.getLogger();
 
     /**
-     * @param model .
-     * @return String.
-     */
-    @RequestMapping("/hello2")
-    public String hello(final ModelMap model) {
-        String userName = "Leo";
-
-        model.addAttribute("uName", userName);
-
-        List<String> betes = new ArrayList<String>();
-
-        betes.add("autruche");
-        //TODO mv&am by Djer |Java| Voulais-tu écrire "chat" à la place de "chien" ?
-        betes.add("très mechant chien");
-
-        model.addAttribute("betes", betes);
-
-        return "hello";
-    }
-
-    /**
-     * @param model est le nom du parametre ModelMap. //TODO mv&am by Djer |JavaDoc| "Le model MVC" serait mieux
-     * @return "admin". //TODO mv&am by Djer |JavaDoc| "Nom de la vue admin à afifcher" serait mieux
+     * declare flow and trigger user authorization request.
+     * @param model "Le model MVC".
+     * @return "Nom de la vue admin à afifcher".
      * @throws GeneralSecurityException If the credentials.json file cannot be found.
      * @throws IOException class is a generic security exception class.
      */
     @RequestMapping("/admin")
-    public String admin(final ModelMap model) throws IOException, GeneralSecurityException {
+    public String retrieveUser(final ModelMap model) throws IOException, GeneralSecurityException {
 
         DataStore<StoredCredential> users = getFlow().getCredentialDataStore();
 

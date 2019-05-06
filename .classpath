@@ -34,14 +34,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/house/.m2/repository/com/google/apis/google-api-services-gmail/v1-rev98-1.23.0/google-api-services-gmail-v1-rev98-1.23.0.jar" sourcepath="C:/Users/house/.m2/repository/com/google/apis/google-api-services-gmail/v1-rev98-1.23.0/google-api-services-gmail-v1-rev98-1.23.0-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.google.apis"/>
-			<attribute name="maven.artifactId" value="google-api-services-gmail"/>
-			<attribute name="maven.version" value="v1-rev98-1.23.0"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

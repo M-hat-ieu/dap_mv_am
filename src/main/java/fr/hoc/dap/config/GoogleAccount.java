@@ -29,19 +29,13 @@ import fr.hoc.dap.service.GoogleService;
  */
 @Controller
 public class GoogleAccount extends GoogleService {
-    /**
-     * constante log pour de futur debugage.
-     */
+    /** log. */
     private static final Logger LOG = LogManager.getLogger();
-    //TODO mv&am by Djer |JavaDoc| "Premier caractère à afficher sur les données senssibles" serait pas mal
-    /**
-     * ??.
-     */
+
+    /** Premier caractère à afficher sur les données senssibles. */
     private static final Integer SENSIBLE_DATA_FIRST_CHAR = 1;
-    //TODO mv&am by Djer |JavaDoc| "Dernier caractère à afficher sur les données senssibles" serait pas mal
-    /**
-     * ??.
-     */
+
+    /** Dernier caractère à afficher sur les données senssibles. */
     private static final Integer SENSIBLE_DATA_LAST_CHAR = 7;
 
     /**
